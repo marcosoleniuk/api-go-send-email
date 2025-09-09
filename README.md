@@ -102,15 +102,16 @@ docker run -d -p 8080:8080 --env-file .env api-go-send-email
 ## 📡 Endpoints Disponíveis
 
 ### **1. Enviar Email**
-`POST /send-email`
+`POST /api/send-email`
 
 #### Request Body
 ```json
 {
-  "to": ["destinatario@dominio.com"],
-  "subject": "Teste de Envio",
-  "body": "<h1>Olá!</h1><p>Esse é um email de teste com <b>HTML</b>.</p>",
-  "attachments": ["uploads/relatorio.pdf"]
+    "sender": "[email-remetente]",
+    "title": "API teste de envio de email",
+    "contentBody": "teste enviando email<br>teste quebra de linha.",
+    "nameAttachment": "",
+    "attachment": ""
 }
 ```
 
@@ -122,14 +123,16 @@ docker run -d -p 8080:8080 --env-file .env api-go-send-email
 #### Resposta de Sucesso
 ```json
 {
-  "message": "Email enviado com sucesso!"
+    "status": true,
+    "message": "E-mail enviado com sucesso"
 }
 ```
 
 #### Resposta de Erro
 ```json
 {
-  "error": "Falha ao enviar email"
+    "status": false,
+    "message": "E-mail não enviado"
 }
 ```
 
